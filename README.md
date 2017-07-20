@@ -52,19 +52,21 @@ example
 * Item 1
 * item 2
 
-## Contributing
+## Authors
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+* **Raghavendra Rao** - *Author,Initial work,contributor,reviewer*
+
+## Contributor
+
+* name1
+* name2
+
+Please read [contributing.md](dma-v2/contributing.md) for details on our code of conduct, and the process for submitting pull requests to EDB DMA project.
 
 ## Versioning
 
-We use [EDBVersioning](http://enterprisedb.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [EDBVersioning](http://enterprisedb.com/) for versioning.  
 
-## Authors
-
-* **Raghavendra Rao** - *Initial work* 
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
@@ -72,5 +74,5 @@ This project is licensed under the EDB License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Inspiration 
+* Inspired by Antlr4 Grammer  
 
