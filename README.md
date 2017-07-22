@@ -2,8 +2,9 @@
 Database Migration Assessment (DMA) tool, written in Python language to analyse the Oracle database schema objects for migration to **EDB Postgres**. Oracle Schema Objects are analyzed syntactically to find incompatibillity using a Parser written in **Antlr4 Grammar** for EDB Postgres and data stored in Python **Pandas** DataFrames.  Later incompatibility data of schema will be classified into Migration Stages with a **Assessment HTML/LOG** reports to provide a clear picture of what all can be automatically migrated without modification and what needs modification for a successfull migration. 
 
 Migration Stages classification
+
 |Stages|Description|
-|:------:|-----------|
+|------|-----------|
 |`0`|Automatic migration. No changes are needed. EDB MTK can convert these objects automatically without any impact to database or application functionality|
 |`1`|A manual intervention is needed to change the syntax. The functionality remain the same|
 |`2`|Behaviorally difference, hence application logic need to be changed|
