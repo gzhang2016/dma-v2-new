@@ -1,26 +1,28 @@
 # DMA 2.0
-Database Migration Assessment (DMA) tool, written in Python language to analyse the Oracle database schema objects for migration to **EDB Postgres**. Oracle Schema Objects are analyzed syntactically to find incompatibillity using a Parser written in **Antlr4 Grammar** for EDB Postgres and data stored in Python **Pandas** DataFrames.  Later incompatibility data of schema will be classified into Migration Stages with a **Assessment HTML/LOG** reports to provide a clear picture of what all can be automatically migrated without modification and what needs modification for a successfull migration. 
+Database Migration Assessment (DMA) tool, written in Python language to analyse the Oracle database schema objects for migration to **EDB Postgres**. Oracle Schema Objects are analyzed syntactically to find incompatibillity using a Parser written in **Antlr4 Grammar** for EDB Postgres. Analyzed data found for incompatibility in a Oracle Schema will be stored in Python **Pandas** DataFrames to generate Assessment report in HTML/LOG formats.  Captured incompatibility data will be classified into Migration Stages to provide a clear picture on what all Oracle schema objects can be automatically migrated without any modification and what needs modification for a successfull migration. 
 
-Migration Stages classification
+**Migration Stages classification**
 
 |Stages|Description|
-|------|-----------|
-|`0`|Automatic migration. No changes are needed. EDB MTK can convert these objects automatically without any impact to database or application functionality|
-|`1`|A manual intervention is needed to change the syntax. The functionality remain the same|
-|`2`|Behaviorally difference, hence application logic need to be changed|
-|`3`|Solution exist to achieve the similar functionality in EPAS|
-|`4`|Not Supported, alternative solution need to be used either rewrite or alternative method|
+|:------:|-----------|
+|0|Automatic migration. No changes are needed. EDB MTK can convert these objects automatically without any impact to database or application functionality|
+|1|A manual intervention is needed to change the syntax. The functionality remain the same|
+|2|Behaviorally difference, hence application logic need to be changed|
+|3|Solution exist to achieve the similar functionality in EPAS|
+|4|Not Supported, alternative solution need to be used either rewrite or alternative method|
 
 ### Features
-* In built EDB Postgres Parser written Antlr4 Grammar
-* Runs on Linux/Mac OS
+* In built EDB Postgres Parser written in Antlr4 Grammar
+* Supports Linux/Mac OS 
 * Source database version can be from Oracle 8i to Oracle 12c
-* Target database version EPAS 9.6
-* Two methods of assessment CONNECTION(using connection) and SQLFILE(without connection) Assessment
-* Single Object or ALL objects assessment allowed in both methods of assessment
-* Easy,effecient and flexible Python framework to plug any database Parser for assessment
-* ONLY SQL statement(SELECT/INSERT/DELETE/UPDATE) parsing.
-* Very defined HTML and Assessment Log report
+* Target database version EPAS 9.6.
+* Assessement supports two methods 
+Using Oracle Database Connection with Oracle Instant Client/cx_Oracle module and 
+SQL file - Custom or IMPDP SQL file
+* Single or ALL objects types assessment support in Connection or SQL file method of assessment
+* Pluggable parser for any database support in the framework
+* Support for parsing ONLY SQL statement(SELECT/INSERT/DELETE/UPDATE)
+* Assessment report with Migration Stages classifications in HTML report to give estimate on migration efforts required.
 
 
 ### Getting Started
@@ -60,7 +62,7 @@ export PATH=$ORACLE_HOME:$PATH
 ```
 ### Running the tool 
 ```
-Raghav-Mac:dma2 raghavendra.rao$ ./edb-dmat.py
+Raghav-Mac:dma2 raghavendra.rao$ ./edb-dmat.py --help
 usage: use "edb-dmat --help" for more information
 
 EDB Database Migration Assessment tool
@@ -82,7 +84,7 @@ optional arguments:
                   BOTH
 ```
 
-### Using Connection method Examples
+#### Using Connection method Examples
 ```
 --Complete assessement of a schema
 edb-dmat.py -c homegate/homegate@172.16.210.131:1521/ORA11G -l /tmp -s homegate
@@ -91,7 +93,7 @@ edb-dmat.py -c homegate/homegate@172.16.210.131:1521/ORA11G -l /tmp -s homegate 
 --Only with HTML report
 edb-dmat.py -c homegate/homegate@172.16.210.131:1521/ORA11G -l /tmp -s homegate -r HTML
 ```
-### Using SQL File Method examples
+#### Using SQL File Method examples
 ```
 --Complete assessment of a schema sqlfile generated from IMPDP
 edb-dmat.py -S scott.sql -l /tmp -O ALL
@@ -101,7 +103,7 @@ edb-dmat.py -S scott.sql -l /tmp -O TABLE
 edb-dmat.py -S scott.sql -l /tmp -O TABLE -r HTML
 ```
 
-### Steps for CONTRIBUTORS to build the antlr Parser/Lexer
+### Steps for Grammar file modification to rebuild antlr Parser/Lexer
 - [Install antlr4-runtime module for python](http://www.antlr.org/download.html)
 - Run below script whenever you modify the ora2epas.g4 file to generate the new Parser/Lexer/Listener
 ```
@@ -117,15 +119,15 @@ sh $HOME/antlr4-builder.sh ora2epas.g4
 ```
 
 ## Author
-* **Raghavendra Rao** - Author, Initial Framework design, contributor,Reviewer
+* **Raghavendra Rao** - Author, Initial Framework design
 
 ## Contributors
 * Raghavendra Rao
 
-Please read [contributing.md](dma-v2/contributing.md) for details on our code of conduct, and the process for submitting pull requests to EDB DMA project.
+Please read [contributing.md](contributing.md) for details on our code of conduct, and the process for submitting pull requests to EDB DMA project.
 
 ## License
-This project is licensed under the EDB License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the EDB License - see the [LICENSE](LICENSE) file for details
 
 ## Acknowledgments
 * Inspired by Antlr4 Grammar 
